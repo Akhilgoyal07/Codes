@@ -1,0 +1,26 @@
+long long getMaxArea(long long a[], int n)
+    {
+        stack <int> s;
+        long long curA=0, maxA=0;
+        
+        for(int i=0; i<n; i++) {
+            while(!s.empty() && a[s.top()] > a[i]) {
+                int j = s.top();
+                s.pop();
+                int psi = s.empty() ? -1 : s.top();
+                curA = (i-psi-1) * a[j];
+                maxA = max(curA, maxA);
+            }
+            s.push(i);
+        }
+        
+        while(!s.empty()) {
+            int j = s.top();
+            s.pop();
+            int psi = s.empty() ? -1 : s.top();
+            curA = (n-psi-1) * a[j];
+            maxA = max(curA, maxA);
+        }
+        
+        return maxA;
+    }
