@@ -1,4 +1,5 @@
-----------SOLUTION 1, during pop --------------
+----------SOLUTION 1, during pop --------------------
+----------Previous Greater Solution--------------
 
 vector <int> calculateSpan(int a[], int n)
 {
