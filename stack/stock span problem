@@ -1,0 +1,48 @@
+----------SOLUTION 1, during pop --------------
+
+vector <int> calculateSpan(int a[], int n)
+{
+    vector <int> ans(n);
+
+    stack <int> s;
+
+    for(int i=n-1; i>=0; i--) {
+        while(!s.empty() && a[s.top()] < a[i]) {
+            int j = s.top();
+            s.pop();
+            ans[j] = j-i;
+        }
+        s.push(i);
+    }
+
+    while(!s.empty()) {
+        int j = s.top();
+        s.pop();
+        ans[j] = j+1;
+    }
+
+    return ans;
+}
+
+
+
+----------SOLUTION 2, during push --------------
+
+vector <int> calculateSpan(int a[], int n)
+{
+    vector <int> ans(n);
+
+    stack <int> s;
+
+    for(int i=0; i<n; i++) {
+        while(!s.empty() && a[s.top()] <= a[i]) {
+            s.pop();
+        }
+        ans[i] = i - (s.empty() ? -1 : s.top());
+        s.push(i);
+    }
+
+
+
+    return ans;
+}
