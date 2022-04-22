@@ -1,0 +1,83 @@
+Node* addPolynomial(Node *p1, Node *p2)
+    {
+        Node** ansHead = NULL;
+        Node* last = NULL;
+        int sum;
+        
+        while(p1 && p2) {
+            if(p1->pow == p2->pow) {
+                sum = p1->coeff+p2->coeff;
+                Node* ptr = new Node(sum, p1->pow);
+                // insertToAnsLL(ansHead, last, ptr);
+                if(!ansHead) {
+                    ansHead = ptr;
+                    last = ptr;
+                } 
+                else {
+                    last->next = ptr;
+                    last= ptr;
+                }
+                p1=p1->next;
+                p2=p2->next;
+            }
+            else if(p1->pow > p2->pow) {
+                Node* ptr = new Node(p1->coeff, p1->pow);
+                // insertToAnsLL(ansHead, last, ptr);
+                if(!ansHead) {
+                    ansHead = ptr;
+                    last = ptr;
+                } 
+                else {
+                    last->next = ptr;
+                    last= ptr;
+                }
+                p1=p1->next;
+            }
+            else {
+                Node* ptr = new Node(p2->coeff, p2->pow);
+                // insertToAnsLL(ansHead, last, ptr);
+                if(!ansHead) {
+                    ansHead = ptr;
+                    last = ptr;
+                } 
+                else {
+                    last->next = ptr;
+                    last= ptr;
+                }
+                p2=p2->next;
+            }
+        }
+        
+        if(p1) {
+            while(p1) {
+                Node* ptr = new Node(p1->coeff, p1->pow);
+                // insertToAnsLL(ansHead, last, ptr);
+                if(!ansHead) {
+                    ansHead = ptr;
+                    last = ptr;
+                } 
+                else {
+                    last->next = ptr;
+                    last= ptr;
+                }
+                p1=p1->next;
+            }
+        } else {
+            while(p2) {
+                Node* ptr = new Node(p2->coeff, p2->pow);
+                // insertToAnsLL(ansHead, last, ptr);
+                if(!ansHead) {
+                    ansHead = ptr;
+                    last = ptr;
+                } 
+                else {
+                    last->next = ptr;
+                    last= ptr;
+                }
+                p2=p2->next;
+            }
+            
+        }
+        
+        return ansHead;
+    }
