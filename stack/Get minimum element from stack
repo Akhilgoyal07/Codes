@@ -1,0 +1,96 @@
+--------------- Approach 1 - with extra element push ---------------------
+class Solution{
+    int minEle;
+    stack<int> s;
+    public:
+    
+       /*returns min element from stack*/
+       int getMin(){
+           if(!s.empty()) {
+               return minEle;
+           }
+           return -1;
+       }
+       
+       /*returns poped element from stack*/
+       int pop(){
+           int x = -1;
+           if(!s.empty()) {
+               if(s.top() < minEle) {
+                   x = minEle;
+                   minEle = 2*minEle - s.top();
+               }
+               else{
+                   x = s.top();
+               }
+               s.pop();
+           }
+           return x;
+       }
+       
+       /*push element x into the stack*/
+       void push(int x){
+           if(s.empty()) {
+               s.push(x);
+               minEle = x;
+           }
+           else {
+               if(x < minEle) {
+                   s.push(2*x - minEle);
+                   minEle = x;
+               }
+               else {
+                   s.push(x);
+               }
+           }
+       }
+};
+
+
+---------------Approach 2 --------------------------------
+class Solution{
+    int minEle;
+    stack<int> s;
+    public:
+    
+       /*returns min element from stack*/
+       int getMin(){
+           if(!s.empty()) {
+               return minEle;
+           }
+           return -1;
+       }
+       
+       /*returns poped element from stack*/
+       int pop(){
+           int x = -1;
+           if(!s.empty()) {
+               if(s.top() < minEle) {
+                   x = minEle;
+                   minEle = 2*minEle - s.top();
+               }
+               else{
+                   x = s.top();
+               }
+               s.pop();
+           }
+           return x;
+       }
+       
+       /*push element x into the stack*/
+       void push(int x){
+           if(s.empty()) {
+               s.push(x);
+               minEle = x;
+           }
+           else {
+               if(x < minEle) {
+                   s.push(2*x - minEle);
+                   minEle = x;
+               }
+               else {
+                   s.push(x);
+               }
+           }
+       }
+};
