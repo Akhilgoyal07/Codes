@@ -1,0 +1,28 @@
+void removeLoop(Node* head)
+    {
+        if(!head && !head->next) {
+            return;
+        }
+        Node* slow = head;
+        Node* fast = head;
+        
+        while(fast->next && fast->next->next){
+            slow=slow->next;
+            fast=fast->next->next;
+            
+            if(slow == fast) {
+                fast= head;
+                while(slow!=fast) {
+                    fast=fast->next;
+                    slow=slow->next;
+                }
+                Node* last = slow;
+                while(last->next != slow) {
+                    last=last->next;
+                }
+                last->next = NULL;
+            }
+            
+        }
+        
+    }
