@@ -1,0 +1,41 @@
+//First Approach - With single traversal
+int getMiddle(Node *head)
+  {
+      if(!head)
+          return -1;
+
+      Node* slow = head;
+      Node* fast = head;
+
+      while(fast && fast->next) {
+          slow = slow->next;
+          fast=fast->next->next;
+      }
+      return slow->data;
+  }
+  
+  
+-----------------------------------------------------
+//Second Approach - With 2 traversal
+
+int getMiddle(Node *head)
+    {
+        if(!head)
+            return -1;
+        int size = 0;
+        Node* ptr = head;
+        while(ptr) {
+            size++;
+            ptr = ptr->next;
+        }
+        int mid = size/2 +1;
+        
+        ptr=head;
+        int i = 1;
+        
+        while (i!=mid){
+            i++;
+            ptr=ptr->next;
+        }
+        return ptr->data;
+    }
