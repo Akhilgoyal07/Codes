@@ -1,0 +1,51 @@
+-----------------------Using Stack O(n) solution -----------------------------------------
+queue<int> rev(queue<int> q)
+{
+    stack<int> s;
+    while(!q.empty()) {
+        int x = q.front();
+        s.push(x);
+        q.pop();
+    }
+    while(!s.empty()) {
+        int x = s.top();
+        s.pop();
+        q.push(x);
+    }
+    return q;
+}
+
+
+-----------------------Using Recursion O(n*n) solution -----------------------------------------
+queue<int> rev(queue<int> q)
+{
+    if(q.empty())
+        return q;
+    int x = q.front();
+    q.pop();
+    q = rev(q);
+    q.push(x);
+    return q;
+}
+
+
+-----------------------Using Recursion  O(n) solution -----------------------------------------
+void rev2(queue<int>& q)
+{
+    if(q.empty())
+        return;
+        
+    int x = q.front();
+    q.pop();
+
+    rev2(q);
+    
+    q.push(x);
+    
+}
+
+queue<int> rev(queue<int> q)
+{
+    rev2(q);
+    return q;
+}
