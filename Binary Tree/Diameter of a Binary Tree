@@ -1,0 +1,48 @@
+----------------------- Using pass by reference -------------------------------
+int maxd (Node* rt, int& m)
+{
+    if(!rt)
+    {
+        return 0;
+    }
+    
+    int l = maxd(rt->left, m);
+    int r = maxd(rt->right, m);
+    if(l+r+1 > m)
+    {
+        m=l+r+1;
+    }
+    return max(l,r)+1;
+}
+
+int diameter(Node* node)
+{
+    int m =0;
+    int p = maxd(node, m);
+    return max(m, p);
+}
+
+
+---------------------- Using Pair ---------------------------
+
+pair<int,int> calDia(Node* cur) {
+    if(cur) {
+        pair<int,int> lh = calDia(cur->left);
+        pair<int,int> rh = calDia(cur->right);
+
+        int cp = lh.first + rh.first + 1;
+        int mh = max(lh.first, rh.first) + 1;
+        // ans = max(ans, cp);
+        int mp = max(lh.second, rh.second);
+        mp = max(mp, cp);
+
+        return {mh, mp};
+    }
+    return {0,0};
+}
+
+int diameter(Node* root) {
+
+    pair<int,int> ans = calDia(root);
+    return ans.second;
+}
